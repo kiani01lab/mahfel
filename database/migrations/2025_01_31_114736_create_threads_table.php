@@ -13,11 +13,19 @@ return new class extends Migration
     {
         Schema::create('threads', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+
+            $table->foreignId('user_id')
+                ->index()
+                ->constrained()
+                ->onDelete('cascade');
+
             $table->string('title');
             $table->string('slug');
-            $table->string('body');
+            $table->mediumText('body');
+            $table->boolean('published')->default(false);
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
