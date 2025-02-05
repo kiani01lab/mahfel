@@ -12,6 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->prefix('api')
                 ->as('api:')
                 ->group(function () {
+                    // Authentication
+                    Route::prefix('auth')
+                        ->group(base_path('routes/api/auth.php'));
                     // V1
                     Route::prefix('v1')
                         ->as('v1:')
