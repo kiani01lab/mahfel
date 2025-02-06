@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Domain\Shared\Models\User;
+use Domain\Threads\Models\Thread;
 use Illuminate\Database\Seeder;
+
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +15,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        Thread::factory(20)->for(
+            User::factory()->create([
+                'first_name' => 'Ali',
+                'last_name' => 'Kiani',
+                'email' => 'kiani@example.com',
+                'password' => '12345678',
+            ])
+        , 'author')->create();
     }
 }
