@@ -9,9 +9,9 @@ class ThreadFactory
     public static function create(array $attributes): ThreadValueObject
     {
         return new ThreadValueObject(
-            title: $attributes['title'],
-            body: $attributes['body'],
-            published: $attributes['published'],
+            title: $attributes['data']['attributes']['title'],
+            body: $attributes['data']['attributes']['body'],
+            user_id: $attributes['data']['relationships']['author']['data']['id'],
         );
     }
 }
