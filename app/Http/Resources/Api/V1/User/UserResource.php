@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Resources\V1\User;
+namespace App\Http\Resources\Api\V1\User;
 
-use App\Http\Resources\V1\Thread\ThreadResource;
+use App\Http\Resources\Api\V1\Thread\ThreadResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
