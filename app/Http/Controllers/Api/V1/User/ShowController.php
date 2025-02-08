@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Api\V1\User;
 use App\Http\Controllers\Api\V1\ApiController;
 use App\Http\Resources\Api\V1\User\UserResource;
 use Domain\Shared\Models\User;
+use Illuminate\Http\JsonResponse;
 
 class ShowController extends ApiController
 {
-    public function __invoke(User $user)
+    public function __invoke(User $user): JsonResponse
     {
         if ($this->includedFormQueryParams('threads')){
             return response()->json(

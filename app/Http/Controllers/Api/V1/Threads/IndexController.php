@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Api\V1\Threads;
 use App\Http\Controllers\Api\V1\ApiController;
 use App\Http\Resources\Api\V1\Thread\ThreadResource;
 use Domain\Threads\Models\Thread;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class IndexController extends ApiController
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): JsonResponse
     {
         if($this->includedFormQueryParams('author')){
             return response()->json(
