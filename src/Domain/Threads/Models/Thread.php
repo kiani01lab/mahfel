@@ -2,9 +2,9 @@
 
 namespace Domain\Threads\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Database\Factories\ThreadFactory;
 use Domain\Replies\Models\Reply;
-use Domain\Shared\Models\Concerns\HasSlug;
 use Domain\Shared\Models\User;
 use Domain\Threads\Models\Builders\ThreadBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Thread extends Model
 {
     /** @use HasFactory<\Domain\Threads\Factories\ThreadFactory> */
-    use HasFactory, HasSlug;
+    use HasFactory, Sluggable;
 
     protected $fillable = [
         'user_id',
@@ -42,6 +42,15 @@ class Thread extends Model
     protected static function newFactory(): ThreadFactory
     {
         return ThreadFactory::new();
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 
     public function newEloquentBuilder($query): ThreadBuilder

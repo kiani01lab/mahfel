@@ -10,9 +10,6 @@ class CreateThreadAction
 {
     public static function execute(ThreadValueObject $object): Thread
     {
-        return Thread::create(array_merge($object->toArray(), [
-            'slug' => Str::slug($object->title),
-            'user_id' => auth()->id(),
-        ]));
+        return Thread::create($object->toArray());
     }
 }
