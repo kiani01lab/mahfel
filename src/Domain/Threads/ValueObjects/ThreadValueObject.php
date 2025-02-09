@@ -2,7 +2,7 @@
 
 namespace Domain\Threads\ValueObjects;
 
-class ThreadValueObject
+readonly class ThreadValueObject
 {
     public function __construct(
         public string $title,
