@@ -1,0 +1,36 @@
+services:
+    elasticsearch:
+        container_name: "mahfel-elastic"
+        image: elasticsearch:8.17.1
+        restart: unless-stopped
+        volumes:
+            - ./elastic:/usr/share/elasticsearch/data:z'
+        ports:
+            - "9200:9200"
+            - "9300:9300"
+        environment:
+            ES_JAVA_OPTS: -Xmx256m -Xms256m
+            node.name: elastic
+            cluster.name: "docker-cluster"
+            discovery.type: single-node
+            bootstrap.memory_lock: true
+            ELASTIC_PASSWORD: "pass1234"
+        networks:
+            - mahfel
+
+    kibana:
+        container_name: "mahfel-kibana"
+        image: kibana:8.17.1
+        restart: unless-stopped
+        environment:
+            ELASTICSEARCH_URL: http://elasticsearch:9200
+            ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+            KIBANA_PASSWORD: "pass1234"
+        ports:
+            - "5601:5601"
+        networks:
+            - mahfel-board
+
+networks:
+    mahfel:
+        driver: bridge
