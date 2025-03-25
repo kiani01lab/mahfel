@@ -22,7 +22,6 @@ class CreateRequest extends FormRequest
             'data.attributes.title' => ['required', 'string'],
             'data.attributes.body' => ['required', 'string'],
             'data.attributes.published' => ['nullable', 'boolean'],
-            'data.relationships.author.data.id' => ['required', 'integer'],
         ];
     }
 }

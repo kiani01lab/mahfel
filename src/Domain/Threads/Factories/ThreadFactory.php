@@ -11,7 +11,6 @@ class ThreadFactory
         return new ThreadValueObject(
             title: $attributes['data']['attributes']['title'],
             body: $attributes['data']['attributes']['body'],
-            user_id: $attributes['data']['relationships']['author']['data']['id'],
         );
     }
 }
