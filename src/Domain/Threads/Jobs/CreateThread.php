@@ -2,6 +2,7 @@
 
 namespace Domain\Threads\Jobs;
 
+use Domain\Shared\Models\User;
 use Domain\Threads\Actions\CreateThreadAction;
 use Domain\Threads\ValueObjects\ThreadValueObject;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -23,6 +24,7 @@ class CreateThread implements ShouldQueue
     public function __construct
     (
         public ThreadValueObject $object,
+        public User $user,
     ) {}
 
     /**
@@ -30,6 +32,6 @@ class CreateThread implements ShouldQueue
      */
     public function handle(): void
     {
-        CreateThreadAction::execute(object: $this->object);
+        CreateThreadAction::execute($this->object, $this->user);
     }
 }

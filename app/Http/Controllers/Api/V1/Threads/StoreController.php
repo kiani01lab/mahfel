@@ -14,8 +14,9 @@ class StoreController extends ApiController
     {
         CreateThread::dispatch(
             object: ThreadFactory::create(
-                attributes: $request->validated()
+                attributes: $request->validated(),
             ),
+            user: auth()->user()
         );
 
         return response()->json(
