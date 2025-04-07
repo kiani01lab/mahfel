@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Auth\RegisterRequest;
 use Domain\Shared\Models\User;
-use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -18,14 +17,9 @@ class RegisterController extends Controller
             'last_name' => $request['last_name'],
             'email' => $request['email'],
             'mobile' => $request['mobile'],
-            'password' => Hash::make($request['password']),
+            'password' => $request['password'],
         ]);
 
-        return response()->json(
-            data: [
-                'message' => 'ثبت نام با موفقیت انجام شد.',
-            ]
-            ,status: 201
-        );
+        return response()->json(data: [], status: 201);
     }
 }
